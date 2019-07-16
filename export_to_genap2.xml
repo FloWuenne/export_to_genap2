@@ -1,0 +1,30 @@
+<tool id="export_to_genap2" name="Exports data from Galaxy to GenAP2 shiny apps"  version="0.1.0">
+ <!--
+             A simple description of the tool that will appear in the tool panel in Galaxy. 
+-->
+ <!--  Handles exit codes in Galaxy.  -->
+<stdio>
+<exit_code range="1:"/>
+</stdio>
+    <command ><![CDATA[
+python '$__tool_directory__/single_cell_data_exporter.py'  -e '$__user_email__'
+#for $d in $datasets
+    '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
+#end for
+> '$log'
+    ]]></command>
+    <inputs>
+        <param name="datasets" type="data" format="data" multiple="true" label="Datasets to export" />
+    </inputs>
+    <outputs>
+        <data name="log" format="txt" />
+    </outputs>
+    <tests>
+    </tests>
+<help><![CDATA[
+Simple tool to copy datasets to a Rshiny readable directory.
+This tool is meant to be used as part of the Single Cell pipeline and it is of no use on its own.
+    ]]></help>
+    <citations/>
+</tool>
+
