@@ -13,7 +13,7 @@ parser.add_option('-e', '--email', help='user_email')
 
 (options, args) = parser.parse_args()
 
-export_dir = '/home/galaxy/'
+export_dir = '/ftp'
 
 user_name = options.email.split('@')
 dir_full_path = os.path.join(export_dir, user_name[0])
