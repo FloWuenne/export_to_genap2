@@ -8,7 +8,7 @@ mv $shiny_user_clustering ./shiny_user_clustering.feather
 &&
 mv $shiny_clustering_sparse ./shiny_clustering.sparse_presto.rds
 &&
-mkdir /ftp/$USER/$dataset_name
+echo '$USER'
 > '$log'
     ]]></command>
     <inputs>
