@@ -6,7 +6,7 @@ mv $shiny_gene_names ./shiny_gene_names.tsv
 &&
 mv $shiny_user_clustering ./shiny_user_clustering.feather
 &&
-mv $shiny_clustering.sparse_presto ./shiny_clustering.sparse_presto.rds
+mv $shiny_clustering_sparse ./shiny_clustering.sparse_presto.rds
 &&
 mkdir /ftp/$USER/$dataset_name
 > '$log'
@@ -15,7 +15,7 @@ mkdir /ftp/$USER/$dataset_name
         <param name="shiny_clustering_file" type="data" format="data" multiple="false" label="Feather file containing clustering results"/>
         <param name="shiny_gene_names" type="data" format="data" multiple="false" label="Gene names for feather file"/>
         <param name="shiny_user_clustering" type="data" format="data" multiple="false" label="user cluster annotation"/>
-        <param name="shiny_clustering.sparse_presto" type="data" format="data" multiple="false" label="Full expression data in sparseMatrix format"/>
+        <param name="shiny_clustering_sparse" type="data" format="data" multiple="false" label="Full expression data in sparseMatrix format"/>
         <param name="dataset_name" label="How do you want to label your dataset?" type="text" format="text" help="Give a unique and representative name to your dataset which will be seen in the shiny app."/>
     </inputs>
     <outputs>
