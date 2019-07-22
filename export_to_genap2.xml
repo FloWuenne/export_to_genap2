@@ -1,16 +1,14 @@
 <tool id="export_to_genap2" name="Single cell data exporter" version="0.1">
-    <command detect_errors="aggressive"><![CDATA[
-mv $shiny_clustering_file shiny_clustering_file.feather
+    <command><![CDATA[
+mv $shiny_clustering_file ./shiny_clustering_file.feather
 &&
-mv $shiny_gene_names shiny_gene_names.tsv
+mv $shiny_gene_names ./shiny_gene_names.tsv
 &&
-mv $shiny_user_clustering shiny_user_clustering.feather
+mv $shiny_user_clustering ./shiny_user_clustering.feather
 &&
-mv $shiny_clustering.sparse_presto shiny_clustering.sparse_presto.rds
+mv $shiny_clustering.sparse_presto ./shiny_clustering.sparse_presto.rds
 &&
 mkdir /ftp/$USER/$dataset_name
-&&
-mv shiny_clustering_file.feather shiny_gene_names.tsv shiny_user_clustering.feather shiny_clustering.sparse_presto.rds /ftp/$USER/$dataset_name
 > '$log'
     ]]></command>
     <inputs>
