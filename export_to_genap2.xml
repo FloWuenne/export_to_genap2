@@ -1,4 +1,4 @@
-<tool id="export_to_genap2" name="Exports data from Galaxy to GenAP2 shiny apps"  version="0.1.0">
+<tool id="export_to_genap2" name="Export data from Galaxy to GenAP2 shiny apps"  version="0.1.0">
  <!--
              A simple description of the tool that will appear in the tool panel in Galaxy. 
 -->
