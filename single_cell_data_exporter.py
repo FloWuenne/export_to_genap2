@@ -9,14 +9,15 @@ import shutil
 import sys
 
 parser = optparse.OptionParser()
-parser.add_option('-e', '--email', help='user_email')
+parser.add_option('-d', '--dataset_name', help='dataset name')
 
 (options, args) = parser.parse_args()
 
 export_dir = '/ftp'
 
-user_name = options.email.split('@')
-dir_full_path = os.path.join(export_dir, user_name[0])
+dataset_name = options.dataset_name
+
+dir_full_path = os.path.join(export_dir, dataset_name)
 
 if len(args) < 3:
     parser.error('Require at least two arguments')

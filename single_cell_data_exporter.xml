@@ -1,6 +1,6 @@
 <tool id="export_to_genap2" name"Single cell data exporter" version="0.1">
     <command detect_errors="aggressive"><![CDATA[
-python '$__tool_directory__/single_cell_data_exporter.py'  -e '$__user_email__'
+python '$__tool_directory__/single_cell_data_exporter.py'  -d '$__dataset_name__'
 #for $d in $datasets
     '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
 #end for
