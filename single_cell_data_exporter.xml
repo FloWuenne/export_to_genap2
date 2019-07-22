@@ -1,13 +1,13 @@
 <tool id="export_to_genap2" name"Single cell data exporter" version="0.1">
     <command detect_errors="aggressive"><![CDATA[
-python '$__tool_directory__/single_cell_data_exporter.py' -d $dataset_name
-#for $d in $datasets
-    '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
-#end for
+python '$__tool_directory__/single_cell_data_exporter.py' --input1 $shiny_clustering_file --input2 $shiny_gene_names --input3 $shiny_user_clustering --input4 $shiny_clustering.sparse_presto --dataset $dataset_name
 > '$log'
     ]]></command>
     <inputs>
-        <param name="datasets" type="data" format="data" multiple="true" label="Datasets to export" />
+        <param name="shiny_clustering_file" type="data" format="data" multiple="false" label="Feather file containing clustering results" />
+        <param name="shiny_gene_names" type="data" format="data" multiple="false" label="Gene names for feather file" />
+        <param name="shiny_user_clustering" type="data" format="data" multiple="false" label="user cluster annotation"/>
+        <param name="shiny_clustering.sparse_presto" type="data" format="data" multiple="false" label="Full expression data in sparseMatrix format" />
 		<param name="dataset_name" label="How do you want to label your dataset?" type="text" format="text" help="Give a unique and representative name to your dataset which will be seen in the shiny app.">
     </inputs>
     <outputs>
