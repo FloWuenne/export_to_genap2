@@ -1,6 +1,16 @@
 <tool id="export_to_genap2" name"Single cell data exporter" version="0.1">
     <command detect_errors="aggressive"><![CDATA[
-python '$__tool_directory__/single_cell_data_exporter.py' --input1 $shiny_clustering_file --input2 $shiny_gene_names --input3 $shiny_user_clustering --input4 $shiny_clustering.sparse_presto --dataset $dataset_name
+mv $shiny_clustering_file shiny_clustering_file.feather
+&&
+mv $shiny_gene_names shiny_gene_names.tsv
+&&
+mv $shiny_user_clustering shiny_user_clustering.feather
+&&
+mv $shiny_clustering.sparse_presto shiny_clustering.sparse_presto.rds
+&&
+mkdir /ftp/$USER/$dataset_name
+&&
+mv shiny_clustering_file.feather shiny_gene_names.tsv shiny_user_clustering.feather shiny_clustering.sparse_presto.rds /ftp/$USER/$dataset_name
 > '$log'
     ]]></command>
     <inputs>
@@ -8,7 +18,7 @@ python '$__tool_directory__/single_cell_data_exporter.py' --input1 $shiny_cluste
         <param name="shiny_gene_names" type="data" format="data" multiple="false" label="Gene names for feather file" />
         <param name="shiny_user_clustering" type="data" format="data" multiple="false" label="user cluster annotation"/>
         <param name="shiny_clustering.sparse_presto" type="data" format="data" multiple="false" label="Full expression data in sparseMatrix format" />
-		<param name="dataset_name" label="How do you want to label your dataset?" type="text" format="text" help="Give a unique and representative name to your dataset which will be seen in the shiny app.">
+		<param name="dataset_name" label="How do you want to label your dataset?" type="text" format="text" help="Give a unique and representative name to your dataset which will be seen in the shiny app." />
     </inputs>
     <outputs>
         <data name="log" format="txt" />
