@@ -1,6 +1,6 @@
 <tool id="export_to_genap2" name"Single cell data exporter" version="0.1">
     <command detect_errors="aggressive"><![CDATA[
-python '$__tool_directory__/single_cell_data_exporter.py'  -d '$__dataset_name__'
+python '$__tool_directory__/single_cell_data_exporter.py' -d $dataset_name
 #for $d in $datasets
     '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
 #end for
@@ -8,6 +8,7 @@ python '$__tool_directory__/single_cell_data_exporter.py'  -d '$__dataset_name__
     ]]></command>
     <inputs>
         <param name="datasets" type="data" format="data" multiple="true" label="Datasets to export" />
+		<param name="dataset_name" label="How do you want to label your dataset?" type="text" format="text" help="Give a unique and representative name to your dataset which will be seen in the shiny app.">
     </inputs>
     <outputs>
         <data name="log" format="txt" />
