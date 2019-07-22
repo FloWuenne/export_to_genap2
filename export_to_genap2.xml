@@ -2,15 +2,9 @@
     <command><![CDATA[
         mkdir /ftp/wueflo00/$dataset_name
         &&
-        cp $shiny_clustering_file /ftp/wueflo00/$dataset_name
-        &&
-        cp $shiny_gene_names /ftp/wueflo00/$dataset_name
-        &&
-        cp $shiny_user_clustering /ftp/wueflo00/$dataset_name
-        &&
-        cp $shiny_clustering_sparse /ftp/wueflo00/$dataset_name
-        &&
-        ls /ftp/wueflo00/$dataset_name
+        cp $shiny_clustering_file ./shiny_clustering_file.feather 
+        && 
+        mv ./shiny_clustering_file.feather /ftp/wueflo00/$dataset_name
     ]]></command>
     <inputs>
         <param name="shiny_clustering_file" type="data" format="data" multiple="false" label="Feather file containing clustering results"/>
