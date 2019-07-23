@@ -39,13 +39,14 @@ def create_user_dir(user, base_dir, dataset):
 
 def copy_data(dir_full_path, files):
 
+    new_names = ['shiny_clustering_file.feather', 'shiny_gene_names.tsv', 'shiny_user_clustering.feather', 'shiny_clustering.sparse_presto.rds']
     exit_code = 0
-    for file in files:
+    for file, name in zip(files, new_names):
         try:
             shutil.copy2(file, dir_full_path)
-            print("Dataset '%s' copied to '%s'" % (file, dir_full_path))
+            print("Dataset '%s' copied to '%s'" % (file, os.path.join(dir_full_path,name)))
         except Exception as e:
-            msg = "Error copying dataset '%s' to '%s', %s" % (file, dir_full_path, e)
+            msg = "Error copying dataset '%s' to '%s', %s" % (file, os.path.join(dir_full_path,name), e)
             print(msg)
             exit_code = 1
 
