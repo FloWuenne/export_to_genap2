@@ -1,10 +1,13 @@
 <tool id="export_to_genap2" name="Single cell data exporter" version="0.1">
     <command><![CDATA[
-        mkdir /ftp/wueflo00/$dataset_name
-        &&
-        cp $shiny_clustering_file ./shiny_clustering_file.feather 
-        && 
-        mv ./shiny_clustering_file.feather /ftp/wueflo00/$dataset_name
+       python -b '/ftp' 
+       -e '$__user_email__' 
+       -d '${dataset_name}' 
+       -c '${shiny_clustering_file}'
+       -g '${shiny_gene_names}'
+       -u '${shiny_user_clustering}'
+       -s '${shiny_clustering_sparse}'
+
     ]]></command>
     <inputs>
         <param name="shiny_clustering_file" type="data" format="data" multiple="false" label="Feather file containing clustering results"/>
