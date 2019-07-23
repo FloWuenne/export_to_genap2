@@ -6,7 +6,6 @@ import re
 import shutil
 
 
-
 def parse_command_line():
     parser = argparse.ArgumentParser()
     parser.add_argument('-b', '--base_dir', help='Base dir', required=True)
@@ -41,12 +40,12 @@ def copy_data(dir_full_path, files):
 
     new_names = ['shiny_clustering_file.feather', 'shiny_gene_names.tsv', 'shiny_user_clustering.feather', 'shiny_clustering.sparse_presto.rds']
     exit_code = 0
-    for file, name in zip(files, new_names):
+    for this_file, name in zip(files, new_names):
         try:
-            shutil.copy2(file, dir_full_path)
-            print("Dataset '%s' copied to '%s'" % (file, os.path.join(dir_full_path,name)))
+            shutil.copy2(this_file, os.path.join(dir_full_path,name))
+            print("Dataset '%s' copied to '%s'" % (this_file, os.path.join(dir_full_path,name)))
         except Exception as e:
-            msg = "Error copying dataset '%s' to '%s', %s" % (file, os.path.join(dir_full_path,name), e)
+            msg = "Error copying dataset '%s' to '%s', %s" % (this_file, os.path.join(dir_full_path,name), e)
             print(msg)
             exit_code = 1
 
