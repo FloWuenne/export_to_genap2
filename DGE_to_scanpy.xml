@@ -1,0 +1,29 @@
+<tool id="DGE_to_scanpy_v234" name="DGE to Seurat" version="0.1.0">
+    <description> creates a Scanpy object from a DGE matrix</description>
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    <requirements>
+        <requirement type="package" version="3.4.1">r-base</requirement>
+        <requirement type="package" version="1.20.0">r-getopt</requirement>
+	<requirement type="package" version="2.3.4">r-seurat</requirement>
+    </requirements>
+    <command><![CDATA[
+        Rscript '$__tool_directory__/rscripts/convert_DGE_to_scanpy.R --input $dge_matrix  --output $scanpy_object'
+    ]]></command>
+    <inputs>
+        <param type="data" name="dge_matrix" format="txt" label="DGE matrix (cells x genes)" />
+    </inputs>
+    <outputs>
+        <data name="scanpy_object" format="h5" from_work_dir="anndata_object.h5ad"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="dge_matrix" value="/test_data/DGE_matrix_test.txt"/>
+            <output name="scanpy_object" file="/test_data/DGE_scanpy_object.h5ad"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        Reads in a digital expression matrix (DGE) in text format and creates a Scanpy object from it. Cells are columns and rows are genes.
+    ]]></help>
+</tool>
