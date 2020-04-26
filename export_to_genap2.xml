@@ -1,13 +1,13 @@
 <tool id="export_to_genap2" name="Export data from Galaxy to GenAP2 shiny apps"  version="0.1.0">
 <stdio>
-<exit_code range="1:"/>
+    <exit_code range="1:"/>
 </stdio>
     <command ><![CDATA[
-python '$__tool_directory__/single_cell_data_exporter.py'  -e '$__user_email__'
-#for $d in $datasets
-    '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
-#end for
-> '$log'
+        python '$__tool_directory__/single_cell_data_exporter.py'  -e '$__user_email__'
+        #for $d in $datasets
+        '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
+        #end for
+        > '$log'
     ]]></command>
     <inputs>
         <param name="datasets" type="data" format="data" multiple="true" label="Datasets to export" />
@@ -18,36 +18,6 @@ python '$__tool_directory__/single_cell_data_exporter.py'  -e '$__user_email__'
     <tests>
     </tests>
 <help><![CDATA[
-Simple tool to copy datasets to a Rshiny readable directory.
-This tool is meant to be used as part of the Single Cell pipeline and it is of no use on its own.
-    ]]></help>
-    <citations/>
-</tool>
-
-=======
-<tool id="export_to_genap2" name="Single cell data exporter" version="0.1">
-    <command><![CDATA[
-	    python '$__tool_directory__/export_to_genap2.py' -b '/ftp' 
-       -e '$__user_email__' 
-       -d '${dataset_name}' 
-       -c '${shiny_clustering_file}'
-       -g '${shiny_gene_names}'
-       -u '${shiny_user_clustering}'
-       -s '${shiny_clustering_sparse}'
-    ]]></command>
-    <inputs>
-        <param name="shiny_clustering_file" type="data" format="data" multiple="false" label="Feather file containing clustering results"/>
-        <param name="shiny_gene_names" type="data" format="data" multiple="false" label="Gene names for feather file"/>
-        <param name="shiny_user_clustering" type="data" format="data" multiple="false" label="user cluster annotation"/>
-        <param name="shiny_clustering_sparse" type="data" format="data" multiple="false" label="Full expression data in sparseMatrix format"/>
-        <param name="dataset_name" label="How do you want to label your dataset?" type="text" format="text" help="Give a unique and representative name to your dataset which will be seen in the shiny app."/>
-    </inputs>
-    <outputs>
-        <data name="log" format="txt" />
-    </outputs>
-    <tests>
-    </tests>
-    <help><![CDATA[
 Simple tool to copy datasets to a Rshiny readable directory.
 This tool is meant to be used as part of the Single Cell pipeline and it is of no use on its own.
     ]]></help>
