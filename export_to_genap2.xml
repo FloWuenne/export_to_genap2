@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 <tool id="export_to_genap2" name="Export data from Galaxy to GenAP2 shiny apps"  version="0.1.0">
- <!--
-                   A simple description of the tool that will appear in the tool panel in Galaxy. 
--->
- <!--  Handles exit codes in Galaxy.  -->
 <stdio>
 <exit_code range="1:"/>
 </stdio>
@@ -58,4 +53,3 @@ This tool is meant to be used as part of the Single Cell pipeline and it is of n
     ]]></help>
     <citations/>
 </tool>
->>>>>>> 89b15b6ce467f9488e17f834060f917e7e24f98f
