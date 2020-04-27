@@ -10,10 +10,6 @@ import sys
 
 parser = optparse.OptionParser()
 parser.add_option('-d', '--dataset', help='dataset name')
-parser.add_option('-i1', '--input1', help='dataset name')
-parser.add_option('-i2', '--input2', help='dataset name')
-parser.add_option('-i3', '--input3', help='dataset name')
-parser.add_option('-i4', '--input4', help='dataset name')
 
 (options, args) = parser.parse_args()
 
@@ -21,10 +17,6 @@ user = os.environ['USER']
 export_dir = '/ftp/' + user 
 
 dname = options.dataset
-infile1 = options.input1
-infile2 = options.input2
-infile3 = options.input3
-infile4 = options.input4
 
 dir_full_path = os.path.join(export_dir, dname)
 
@@ -44,8 +36,6 @@ try:
 except OSError:
     if not os.path.isdir(dir_full_path):
         raise
-
-
 
 dataset_paths = args[::3]
 dataset_names = args[1::3]

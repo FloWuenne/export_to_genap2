@@ -3,7 +3,7 @@
     <exit_code range="1:"/>
 </stdio>
     <command ><![CDATA[
-        python '$__tool_directory__/single_cell_data_exporter.py'  -e '$__user_email__'
+        python '$__tool_directory__/single_cell_data_exporter.py' -e '$__user_email__'
         #for $d in $datasets
         '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
         #end for
