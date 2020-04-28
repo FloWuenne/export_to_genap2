@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
+import regex
 import optparse
 import os
 import os.path
@@ -9,25 +10,29 @@ import shutil
 import sys
 
 parser = optparse.OptionParser()
-parser.add_option('-e', '--email', help='user_email')
+parser.add_option('-d', '--dataset', help='dataset name')
+parser.add_option('-e', '--user_email', help='User email')
 
 (options, args) = parser.parse_args()
 
-export_dir = '/ftp'
+user = os.environ['USER']
+export_dir = '/ftp/' + user 
 
-user_name = options.email.split('@')
-dir_full_path = os.path.join(export_dir, user_name[0])
+dname = options.dataset
 
+print(dname)
+print(export_dir)
+print(args)
+
+dir_full_path = os.path.join(export_dir, dname)
 
 real_export_dir = os.path.realpath(dir_full_path)
-
-print(args)
 
 if not os.path.exists(export_dir):
     raise Exception("'%s' directory does not exist or it is not accessible by the Galaxy user" % export_dir)
 
 # Create user dir
-try: 
+try:
     os.makedirs(dir_full_path)
 except OSError:
     if not os.path.isdir(dir_full_path):
@@ -40,7 +45,7 @@ dataset_exts = args[2::3]
 exit_code = 0
 
 for dp, dn, de in zip(dataset_paths, dataset_names, dataset_exts):
- 
+
     dn_de = "%s.%s" % (dn, de)
     dn_de_safe = re.sub(r'(?u)[^-\w.]', '', dn_de.strip().replace(' ', '_'))
     dest = os.path.join(real_export_dir, dn_de_safe)

@@ -1,11 +1,14 @@
 <tool id="export_to_genap2" name="Export data from Galaxy to GenAP2 shiny apps"  version="0.1.0">
+	<requirements>
+		<requirement type="package" version="2020.4.4">regex</requirement>
+	</requirements>
 <stdio>
     <exit_code range="1:"/>
 </stdio>
     <command ><![CDATA[
         python '$__tool_directory__/single_cell_data_exporter.py' -e '$__user_email__'
         #for $d in $datasets
-        '${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
+		'${d}' '${d.hid}: ${d.element_identifier}' '${d.ext}'
         #end for
         > '$log'
     ]]></command>
