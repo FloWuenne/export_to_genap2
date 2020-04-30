@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tool id="anndata_converter" name="Anndata converter" version="0.0.1+galaxy2">
+  <description>enables conversion of anndata to other formats</description>
+  <requirements>
+  	<requirement type="package" version="0.2.10">scanpy-scripts</requirement>
+  </requirements>
+  <command detect_errors="exit_code"><![CDATA[
+  	ln -s '${input_obj_file}' input.h5 
+  	&&
+  	python $operations
+]]></command>
+  <configfiles>
+    <configfile name="operations">
+    	import scanpy as sc
+    	import logging
+
+    	adata = sc.read('input.h5')
+
+    	adata.write_loom('RNA.loom')
+
+    	print("Anndata succesfully converted to loom format!")
+    </configfile>
+</configfiles>
+
+  <inputs>
+    <param name="input_file" type="data" format="h5,h5ad" label="Input object in hdf5 AnnData format"/>
+  </inputs>
+
+  <outputs>
+        <data name="loom_file" type="data" format="h5,h5ad" />
+  </outputs>
+
+  <help><![CDATA[
+
+This function is used as a transfomer function from Anndata format to other formats. 
+Currently supports the following transformations:
+
+Anndata (.h5ad) ==> Loom (.loom)
+
+]]></help>
+  <expand macro="citations"/>
+</tool>
